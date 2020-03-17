@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-  state = { term: '' };
+  state = { term: '', header: '' };
+
+  componentDidMount() {
+    this.setState({ header: 'ANIMAL' });
+  }
 
   onInputChange = e => {
     return this.setState({ term: e.target.value.toUpperCase() });
@@ -11,6 +15,7 @@ class SearchBar extends Component {
     this.props.onSubmit(this.state.term);
 
     this.setState({
+      header: this.state.term,
       term: ''
     });
 
@@ -19,17 +24,34 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="ui segment">
-        <form onSubmit={this.onFormSubmit} className="ui form">
-          <div className="field">
-            <label>Image Search</label>
-            <input
-              type="text"
-              onChange={this.onInputChange}
-              value={this.state.term}
-            />
+      <div className="search-bar">
+        <div className="ui fixed menu">
+          <div className="item">
+            <i className="orange star large icon"></i>
           </div>
-        </form>
+          <a className="item" href="#top">
+            {this.state.header}
+          </a>
+
+          <div className="ui category search item right">
+            <div className="ui transparent icon input">
+              <form
+                className="ui transparent icon input"
+                onSubmit={this.onFormSubmit}
+              >
+                <input
+                  className="prompt"
+                  type="text"
+                  onChange={this.onInputChange}
+                  value={this.state.term}
+                />
+
+                <i className="search link icon"></i>
+              </form>
+            </div>
+            <div className="results"></div>
+          </div>
+        </div>
       </div>
     );
   }
