@@ -32,6 +32,17 @@ class App extends Component {
       <div>
         <SearchBar onSubmit={this.onSearchSubmit} />
         <ImageList images={this.state.images} />
+
+        <div className="ui vertical footer segment">
+          <div className="ui center aligned container">
+            <div className="ui inverted section divider"></div>
+            <div className="ui horizontal inverted divided link list">
+              <a className="item" href="https://unsplash.com/developers">
+                These images are from Unsplash Image API
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
